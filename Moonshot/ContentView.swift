@@ -17,29 +17,23 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            if isGrid == false {
-                MissionListView(astronauts: astronauts, missions: missions)
-                    .navigationTitle("Moonshot")
-                    .background(.darkBackground)
-                    .preferredColorScheme(.dark)
-                    .toolbar{
-                        Button(isGrid ? "Show as list" : "Show as grid"){
-                            isGrid.toggle()
-                        }
-                    }
-                
+            Group {
+                if isGrid == false {
+                    MissionListView(astronauts: astronauts, missions: missions)
+                }
+                else{
+                    MissionGridView(astronauts: astronauts, missions: missions)
+                }
             }
-            else{
-                MissionGridView(astronauts: astronauts, missions: missions)
-                    .navigationTitle("Moonshot")
-                    .background(.darkBackground)
-                    .preferredColorScheme(.dark)
-                    .toolbar{
-                        Button(isGrid ? "Show as list" : "Show as grid"){
-                            isGrid.toggle()
-                        }
-                    }
+            .navigationTitle("Moonshot")
+            .background(.darkBackground)
+            .preferredColorScheme(.dark)
+            .toolbar{
+                Button(isGrid ? "Show as list" : "Show as grid"){
+                    isGrid.toggle()
+                }
             }
+            
         }
     }
 }
